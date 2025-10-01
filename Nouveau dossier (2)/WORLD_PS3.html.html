@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>PS3 File & Games — Ultimate PS3 Archive</title>
+  <link rel="icon" href="lugo.png" type="image/png" />
+  <link rel="stylesheet" href="hasan.css">
+</head>
+<body>
+  
+  <header>
+    <div class="nav-wrap">
+      <div class="brand">
+        <img src="lugo.png" alt="PS3 Logo">
+        <div>
+          <h1>PS3 File & Games</h1>
+        </div>
+      </div>
+
+      <nav>
+        <a href="GTA_V.html">Games</a>
+        <a href="tomb raider.html">Downloads</a>
+        <a href="#guides">Guides</a>
+        <a href="#videos">Videos</a>
+        <a href="#tools">Tools</a>
+        <div class="search"><input type="search" id="search" placeholder="Search game or file..." /></div>
+      </nav>
+    </div>
+  </header>
+  <style>/* ====== Base / Reset ====== */
+    :root{
+      --bg1:#001a3d; /* deep blue */
+      --accent1:#ff0044; /* red */
+      --accent2:#00a3ff; /* cyan */
+      --glass: rgba(255,255,255,0.06);
+      --glass-strong: rgba(0,0,0,0.45);
+      --card-radius:16px;
+      --max-width:1200px;
+      --mono: 'Segoe UI', Roboto, Arial, sans-serif;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:var(--mono);
+      color:#fff;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+      background: linear-gradient(115deg,var(--bg1),#2b0a2b 25%, #081f3f 60%);
+      background-size:400% 400%;
+      animation:bgShift 25s ease infinite;
+      overflow-x:hidden;
+    }
+    @keyframes bgShift{
+      0%{background-position:0% 50%}
+      50%{background-position:100% 50%}
+      100%{background-position:0% 50%}
+    }
+
+    /* ====== Header ====== */
+    header{
+      position:fixed;left:0;right:0;top:0;z-index:40;
+      backdrop-filter: blur(6px);
+      background: linear-gradient(180deg, rgba(0,0,0,0.45), rgba(0,0,0,0.15));
+      border-bottom:1px solid rgba(255,255,255,0.03);
+    }
+    .nav-wrap{max-width:var(--max-width);margin:0 auto;display:flex;align-items:center;gap:20px;padding:14px}
+    .brand{display:flex;align-items:center;gap:12px}
+    .brand img{height:44px;width:44px;border-radius:8px;object-fit:cover}
+    .brand h1{font-size:1.15rem;margin:0}
+    nav{margin-left:auto;display:flex;gap:14px;align-items:center}
+    nav a{color:#ddd;text-decoration:none;padding:8px 12px;border-radius:8px;transition:all .18s}
+    nav a:hover{color:#fff;background:rgba(255,255,255,0.04)}
+    .search{display:flex;align-items:center;gap:8px}
+    .search input{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px 12px;border-radius:12px;color:#fff}
+
+    /* ====== Hero ====== */
+    .hero{max-width:var(--max-width);margin:110px auto 20px;padding:40px 24px;display:grid;grid-template-columns:1fr 420px;gap:30px}
+    .hero .copy h2{font-size:2.2rem;margin:0 0 12px}
+    .hero .copy p{color:#dbeafe;line-height:1.5}
+    .btn{display:inline-block;padding:12px 18px;border-radius:12px;background:linear-gradient(90deg,var(--accent2),var(--accent1));color:#fff;font-weight:600;text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,0.5)}
+
+    /* hero right: preview card */
+    .preview{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.35));padding:18px;border-radius:18px;border:1px solid rgba(255,255,255,0.03)}
+    .preview img{width:100%;border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,0.6)}
+    .meta{display:flex;justify-content:space-between;margin-top:12px}
+
+    /* ====== Sections grid ====== */
+    .container{max-width:var(--max-width);margin:30px auto;padding:0 20px}
+
+    /* games gallery */
+    .games-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:22px}
+    .card{background:var(--glass-strong);border-radius:var(--card-radius);padding:14px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,0.04);transition:transform .25s,box-shadow .25s}
+    .card:hover{transform:translateY(-8px);box-shadow:0 30px 60px rgba(0,0,0,0.6)}
+    .card img{width:100%;height:150px;object-fit:cover;border-radius:10px}
+    .card h3{margin:12px 0 6px;font-size:1.1rem}
+    .card p{font-size:0.95rem;color:#d1e8ff;line-height:1.4}
+    .download-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .dl{background:rgba(0,0,0,0.5);padding:8px 10px;border-radius:10px;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,0.03);font-weight:600}
+
+    /* details column */
+    .sidebar{position:sticky;top:110px;height:fit-content}
+    .box{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.35));padding:16px;border-radius:12px;margin-bottom:18px;border:1px solid rgba(255,255,255,0.03)}
+
+    /* videos grid */
+    .videos{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
+    .video-embed{background:#000;border-radius:10px;overflow:hidden;border:1px solid rgba(255,255,255,0.04)}
+    .video-embed iframe{width:100%;height:180px;border:0}
+
+    /* resources list */
+    .resources ul{list-style:none;padding:0;margin:0}
+    .resources li{padding:10px;border-bottom:1px solid rgba(255,255,255,0.03)}
+
+    /* footer */
+    footer{margin-top:40px;padding:40px 20px;background:linear-gradient(180deg, rgba(0,0,0,0.6), rgba(0,0,0,0.85));border-top:1px solid rgba(255,255,255,0.02)}
+    .footer-grid{max-width:var(--max-width);margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px}
+    .social a{display:inline-block;margin-right:10px;text-decoration:none;color:#fff}
+
+    /* responsive */
+    @media (max-width:980px){
+      .hero{grid-template-columns:1fr;}
+      .sidebar{position:relative;top:auto}
+      .footer-grid{grid-template-columns:1fr}
+    }</style>
+  <!-- ===== HERO ===== -->
+  <section class="hero" aria-label="hero">
+    <div class="copy">
+      <h2>Ultimate PS3 Archive — Games, PKG files, Guides & Tools</h2>
+      <p>Download tested PS3 PKG files, get step-by-step installation guides, firmware & tools, and watch curated gameplay and install tutorials. Built for collectors and players.</p>
+      <p style="margin-top:18px">
+        <a class="btn" href="#downloads">Browse Downloads</a>
+        <a class="btn" href="#guides" style="margin-left:10px;opacity:.92">Installation Guides</a>
+      </p>
+
+      <div style="margin-top:22px;display:flex;gap:12px;flex-wrap:wrap">
+        <div class="box" style="min-width:220px">Latest: <strong>PS3 Firmware 4.88</strong> — Tools & install notes.</div>
+        <div class="box" style="min-width:220px">Top Game: <strong>GTA V</strong> — Full PKG set available.</div>
+      </div>
+    </div>
+
+    <aside class="preview sidebar">
+      <div class="preview">
+        <img src="PS3_consoles_montage.png" alt="PS3 console preview">
+        <div class="meta">
+          <div>Console: <strong>PS3 Slim / Fat</strong></div>
+          <div>Files: <strong>PKG / PATCHES</strong></div>
+        </div>
+      </div>
+      <div class="box" style="margin-top:14px">
+        <h4>Quick Links</h4>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-top:8px">
+          <a class="dl" href="#downloads">All PKG Files</a>
+          <a class="dl" href="#tools">Installation Tools</a>
+          <a class="dl" href="#guides">Step-by-Step</a>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <!-- ===== GAMES GALLERY ===== -->
+  <main class="container">
+    <section id="games">
+      <h2 style="margin:0 0 14px">Featured Games</h2>
+      <div class="games-grid">
+
+        <!-- Example: Minecraft -->
+        <article class="card">
+          <img src="MINECRAF.jpg" alt="Minecraft PS3">
+          <h3>Minecraft PS3 Edition</h3>
+          <p>Classic PS3 edition — split into 3 PKG parts. Includes extra maps and texture packs.</p>
+          <div class="download-list">
+            <a class="dl" href="MINECRAFT.html">Download page</a>
+           
+          </div>
+        </article>
+
+        <!-- Blur -->
+        <article class="card">
+          <img src="BLUR.jpg" alt="Blur PS3">
+          <h3>Blur</h3>
+          <p>Arcade racer — full PKG + license and patches included.</p>
+          <div class="download-list">
+            <a class="dl" href="BLUR.html">Download page</a>
+          </div>
+        </article>
+
+        <!-- PES 2024 -->
+        <article class="card">
+          <img src="PES24.png" alt="PES 2024 PS3">
+          <h3>PES 2024 (PES2024)</h3>
+          <p>Updated rosters, Option Files and stadium patches supplied. Follow the guide for OF installation.</p>
+          <div class="download-list">
+            <a class="dl" href="PES24.html">Download page</a>
+          </div>
+        </article>
+
+        <!-- GTA V -->
+        <article class="card">
+          <img src="GTA V.jpg" alt="GTA V PS3">
+          <h3>GTA V</h3>
+          <p>Complete 8-part PKG release with patch and license files. Installation notes available on the page.</p>
+          <div class="download-list">
+            <a class="dl" href="GTA_V.html">Download page</a>
+          </div>
+        </article>
+
+        <!-- PES 2026 -->
+        <article class="card">
+          <img src="PES26.jpg" alt="PES 2026 PS3">
+          <h3>PES 2026</h3>
+          <p>Community modded build. Includes patches and Liveupdate files.</p>
+          <div class="download-list">
+            <a class="dl" href="PES26.html">Download page</a>
+          </div>
+        </article>
+
+        <!-- Tomb Raider -->
+        <article class="card">
+          <img src="tomb raider ps3.jpg" alt="Tomb Raider PS3">
+          <h3>Tomb Raider</h3>
+          <p>Adventure edition with DLC and patch installers.</p>
+          <div class="download-list">
+            <a class="dl" href="tomb_raider.html">Download page</a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== Downloads (index) ===== -->
+    <section id="downloads" style="margin-top:36px">
+      <h2>Downloads — Quick Index</h2>
+      <div class="box">
+        <p>Below are direct links to the per-game download pages (each page contains PKG parts, license files, and installation notes):</p>
+        <ul style="margin-top:12px">
+          <li><a class="dl" href="MINECRAFT.html">Minecraft PS3 — Download page</a></li><br>
+          <li><a class="dl" href="BLUR.html">Blur — Download page</a></li><br>
+          <li><a class="dl" href="PES24.html">PES 2024 — Download page</a></li><br>
+          <li><a class="dl" href="PES26.html">PES 2026 — Download page</a></li><br>
+          <li><a class="dl" href="GTA_V.html">GTA V — Download page</a></li><br>
+          <li><a class="dl" href="tomb_raider.html">Tomb Raider — Download page</a></li><br>
+        </ul>
+      </div>
+    </section>
+
+    <div style="display:grid;grid-template-columns:2fr 1fr;gap:20px;margin-top:30px">
+      <section id="guides">
+        <h2>Guides & Tutorials</h2>
+        <div class="box">
+          <h4>How to install PKG files on PS3 (safe method)</h4>
+          <ol>
+            <li>Make sure your PS3 has enough free space and is on a compatible firmware.</li>
+            <li>Download all PKG parts and the LICENSE/patch files from the game's download page.</li>
+            <li>Use a USB drive formatted FAT32 and copy the PKG files into a folder called <code>PS3/EXPORT</code> or use FTP for large files.</li>
+            <li>Install using the PS3 package installer or via custom firmware tools (follow legal and safe practices).</li>
+            <li>Apply patches and license files if required, then reboot the console.</li>
+          </ol>
+          <p><strong>Important:</strong> Always verify file integrity and scan archives. We provide SHA1/MD5 checksums on each download page.</p>
+        </div>
+
+        <div class="box" style="margin-top:12px">
+          <h4>PS3 Useful Tools</h4>
+          <ul class="resources">
+            <li><strong>File Splitter</strong> — For rejoining multi-part PKG files.</li>
+            <li><strong>PKG Installer</strong> — PC helper tools for transfer.</li>
+            <li><strong>FTP Server</strong> — Transfer packages directly to PS3 over network.</li>
+          </ul>
+        </div>
+
+        <div class="box" style="margin-top:12px">
+          <h4>Safety & Legal Notes</h4>
+          <p>We share community archives for educational and preservation purposes. Always respect copyright, use own game licenses when required, and follow local laws.</p>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="box">
+          <h4>Featured Video</h4>
+          <div class="video-embed">
+            <!-- Replace VIDEO_ID with a valid YouTube video ID -->
+            <iframe src="https://www.youtube.com/embed/6zuVKmIJ55g" title="Install PKG Guide" allowfullscreen></iframe>
+          </div>
+        </div>
+
+        <div class="box">
+          <h4>Latest Patches</h4>
+          <ul>
+            <li>PES 2024 Patch v14.4 — Option File included</li>
+            <li>GTA V Fix — License rebind tool</li>
+            <li>Minecraft DLC — Map pack</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h4>Tools & Downloads</h4>
+          <a class="dl" href="#">Checksum utility</a>
+          <a class="dl" href="#" style="margin-left:8px">FTP client</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- videos section -->
+0    <section id="videos" style="margin-top:30px">
+      <h2>Curated Videos</h2>
+      <div class="videos">
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/IRzG-Vxnhsg" title="Tutorial" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/0fkYWvbb9Eg" title="Gameplay 2" allowfullscreen></iframe></div>
+        <div class="video-embed"><iframe src="https://www.youtube.com/embed/wceoKomzce4" title="Tutorial" allowfullscreen></iframe></div>
+      </div>
+    </section>
+
+    <!-- tools / extra resources -->
+    <section id="tools" style="margin-top:30px">
+      <h2>Tools & Firmware</h2>
+      <div class="box">
+        <p>Here you can find utilities, firmware notes and links to official PS3 resources. Replace these links with your own repositories or trusted mirrors.</p>
+        <ul>
+          <li>Official Firmware notes (links on each page)</li>
+          <li>Community tools (FTP, PKG merge/split)</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- floating decorations (replace with your assets) -->
+  <img src="Manette PS3 sur fond néon.png" style="position:fixed;left:6vw;bottom:-40px;width:120px;opacity:0.7;transform:translateY(0);animation:floatController 24s linear infinite;" alt="controller">
+  <img src="ChatGPT Image 29 sept. 2025, 12_05_23.png" style="position:fixed;right:8vw;top:20vh;width:80px;opacity:0.6;animation:floatController 20s linear infinite;animation-delay:3s;" alt="icon">
+
+  <style>
+    @keyframes floatController{
+      0%{transform:translateY(0) rotate(0deg)}
+      50%{transform:translateY(-60vh) rotate(180deg)}
+      100%{transform:translateY(-120vh) rotate(360deg)}
+    }
+  </style>
+
+  <!-- footer -->
+  <footer>
+    <div class="footer-grid">
+      <div>
+        <h4>About PS3 File & Games</h4>
+        <p>Large community archive for PS3 files, patches and guides. Built by players for players. Replace placeholders with your site policies and contact info.</p>
+      </div>
+      <div>
+        <h4>Contact & Social</h4>
+        <p class="social">
+          <a href="https://www.instagram.com/hassan_tabbal/">Instagram</a>
+          <a href="https://www.youtube.com/@HASSANTABBAL">YouTube</a>
+          <a href="https://www.facebook.com/ffree.gassem?locale=ar_AR">Facebook</a>
+        </p>
+      </div>
+      <div>
+        <h4>Quick Links</h4>
+        <p><a class="dl" href="MINECRAFT.html">Minecraft</a> <a class="dl" href="GTA_V.html">GTA V</a></p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:18px;color:#bfcfdc;opacity:0.9">&copy; 2025 PS3 File & Games — All rights reserved.</div>
+  </footer>
+
+  <script>
+    // Basic client-side search that filters cards by title
+    const search = document.getElementById('search');
+    if(search){
+      search.addEventListener('input', e => {
+        const q = e.target.value.toLowerCase();
+        document.querySelectorAll('.card').forEach(card => {
+          const t = card.querySelector('h3').innerText.toLowerCase();
+          card.style.display = t.includes(q) ? '' : 'none';
+        });
+      });
+    }
+
+    // Small progressive enhancement: lazy load iframes
+    document.querySelectorAll('iframe').forEach(iframe => {
+      iframe.loading = 'lazy';
+    });
+  </script>
+</body>
+</html>
